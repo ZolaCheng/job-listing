@@ -17,6 +17,10 @@ class Admin::JobsController < ApplicationController
     end
   end
 
+  def job_params
+    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email)
+  end
+
   def new
     @job = Job.new
   end
