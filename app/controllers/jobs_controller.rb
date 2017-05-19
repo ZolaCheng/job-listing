@@ -8,12 +8,6 @@ class JobsController < ApplicationController
     @jobs = Job.where(:is_hidden => false).order("created_at DESC")
   end
 
-
-  def job_params
-    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
-  end
-
-
   def new
     @job = Job.new
   end
@@ -26,12 +20,6 @@ class JobsController < ApplicationController
     else
       render :new
     end
-  end
-
-  private
-
-  def job_params
-    params.require(:job).permit(:title, :description)
   end
 
   def edit
@@ -55,5 +43,10 @@ class JobsController < ApplicationController
     redirect_to jobs_path
   end
 
+  private
+
+  def job_params
+    params.require(:job).permit(:title, :description, :wage_upper_bound, :wage_lower_bound, :contact_email, :is_hidden)
+  end
 
 end
